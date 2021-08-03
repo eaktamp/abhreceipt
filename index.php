@@ -29,6 +29,12 @@
             font-size: 0.7em;
         }
 
+        #thumbnail img {
+            border-radius: 25px;
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+        }
     </style>
 </head>
 
@@ -100,12 +106,12 @@
 
 
 
-<!--  |||||||||||||||||||||||||||||||-->
+                        <!--  |||||||||||||||||||||||||||||||-->
 
 
-           
 
-<!--  |||||||||||||||||||||||||||||||-->
+
+                        <!--  |||||||||||||||||||||||||||||||-->
 
 
 
@@ -240,8 +246,26 @@
                             </div>
                             <input id="passwordConfirmation" type="text" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
                         </div> -->
+
+
+
+
+                        <div class="input-group col-lg-6 mb-4">
+                            <div class="input-group-prepend">
+                                <div class="row mb-3">
+                                    <div class="col-lg-12 mt-5">
+                                        <label for="pname" class="form-label mt-2">ภาพ</label>
+                                        <input id="file_upload" name="file_upload[]" type="file" multiple="true">
+                                    </div>
+                                    <div style="float:right;" class=" ml-5" id="thumbnail"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                         <!-- Submit Button -->
-                        <div class="form-group col-lg-12 mx-auto mb-0">
+                        <div class="form-group col-lg-12 mx-auto mb-0 ">
                             <a href="#" class="btn btn-primary btn-block py-2" type="submit" id="submit" name="submit">
                                 <span class="font-weight-bold">ส่งข้อมูล</span>
                             </a>
@@ -369,6 +393,53 @@
                 }
                 return false;
             });
+        });
+    </script>
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#upload").on("click", function(e) {
+                $("#file_upload").show().click().hide();
+                e.preventDefault();
+            });
+            $("#file_upload").on("change", function(e) {
+                var files = this.files
+                showThumbnail(files)
+            });
+
+            function showThumbnail(files) {
+                $("#thumbnail").html("");
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i]
+                    var imageType = /image.*/
+                    if (!file.type.match(imageType)) {
+                        //     console.log("Not an Image");
+                        continue;
+                    }
+
+                    var image = document.createElement("img");
+                    var thumbnail = document.getElementById("thumbnail");
+                    image.file = file;
+                    thumbnail.appendChild(image)
+
+                    var reader = new FileReader()
+                    reader.onload = (function(aImg) {
+                        return function(e) {
+                            aImg.src = e.target.result;
+                        };
+                    }(image))
+
+                    var ret = reader.readAsDataURL(file);
+                    var canvas = document.createElement("canvas");
+                    ctx = canvas.getContext("2d");
+                    image.onload = function() {
+                        ctx.drawImage(image, 100, 100)
+                    }
+                } // end for loop
+
+            } // end showThumbnail
         });
     </script>
 </body>
