@@ -15,6 +15,10 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.20/css/uikit.css">
+    <link rel="stylesheet" href="./js/jquery.Thailand.js/dist/jquery.Thailand.min.css">
+
     <?php date_default_timezone_set('Asia/Bangkok'); ?>
     <style>
         body {
@@ -36,9 +40,27 @@
             object-fit: cover;
         }
     </style>
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-33058582-1', 'auto', {
+            'name': 'Main'
+        });
+        ga('Main.send', 'event', 'jquery.Thailand.js', 'GitHub', 'Visit');
+    </script>
 </head>
 
 <body>
+
 
     <!-- Navbar-->
     <!-- <header class="header">
@@ -69,7 +91,7 @@
 
             <!-- Registeration Form -->
             <div class="col-md-7 col-lg-6 ml-auto">
-                <form action="#">
+                <form action="#" id="demo1" class="demo" style="display:none;" autocomplete="off" uk-grid>
                     <div class="row">
 
                         <!--ชื่อ - สกุล , ชื่อบริษัท -->
@@ -92,16 +114,33 @@
                             <input id="user_count" type="text" name="user_count" title="" placeholder=" เลขประจำตัวประชาชน " onKeyPress="CheckNumuser()" class="form-control bg-white border-left-0 border-md">
                         </div>
                         <!-- หน่วยงาน -->
-                        <div class="input-group col-lg-12 mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa fa-university text-muted"></i>
-                                </span>
-                            </div>
-                            <input id="dep" type="text" name="dep" placeholder="ที่อยู่" title="ร" class="form-control bg-white border-left-0 border-md">
+
+
+
+
+
+                        <!-- DEMO 1 -->
+
+                        <div id="loader">
+                            <div uk-spinner></div> รอสักครู่ กำลังโหลดฐานข้อมูล...
                         </div>
 
 
+                        <div class="input-group col-lg-12 mb-4">
+                            <input id="district" type="text" name="district" placeholder="ตำบล / แขวง" class="form-control bg-white border-md">
+                        </div>
+                        <div class="input-group col-lg-12 mb-4">
+                            <input id="amphoe" type="text" name="amphoe" placeholder="อำเภอ / เขต" class="form-control bg-white border-md">
+                        </div>
+                        <div class="input-group col-lg-12 mb-4">
+                            <input id="province" type="text" name="province" placeholder="จังหวัด" class="form-control bg-white border-md">
+                        </div>
+                        <div class="input-group col-lg-12 mb-4">
+                            <input id="zipcode" type="text" name="zipcode" placeholder="รหัสไปรษณีย์" class="form-control bg-white border-md">
+                        </div>
+
+
+                        <!-- END DEMO 1 -->
 
 
 
@@ -397,7 +436,7 @@
     </script>
 
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
     <script type="text/javascript">
         $(function() {
             $("#upload").on("click", function(e) {
@@ -440,6 +479,59 @@
                 } // end for loop
 
             } // end showThumbnail
+        });
+    </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.20/js/uikit.min.js"></script>
+
+    <!-- dependencies for zip mode -->
+    <script type="text/javascript" src="./js/jquery.Thailand.js/dependencies/zip.js/zip.js"></script>
+    <!-- / dependencies for zip mode -->
+
+    <script type="text/javascript" src="./js/jquery.Thailand.js/dependencies/JQL.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.Thailand.js/dependencies/typeahead.bundle.js"></script>
+
+    <script type="text/javascript" src="./js/jquery.Thailand.js/dist/jquery.Thailand.min.js"></script>
+
+    <script type="text/javascript">
+        /******************\
+         *     DEMO 1     *
+        \******************/
+        // demo 1: load database from json. if your server is support gzip. we recommended to use this rather than zip.
+        // for more info check README.md
+
+        $.Thailand({
+            database: './js/jquery.Thailand.js/database/db.json',
+
+            $district: $('#demo1 [name="district"]'),
+            $amphoe: $('#demo1 [name="amphoe"]'),
+            $province: $('#demo1 [name="province"]'),
+            $zipcode: $('#demo1 [name="zipcode"]'),
+
+            onDataFill: function(data) {
+                console.info('Data Filled', data);
+            },
+
+            onLoad: function() {
+                console.info('Autocomplete is ready!');
+                $('#loader, .demo').toggle();
+            }
+        });
+
+        // watch on change
+
+        $('#demo1 [name="district"]').change(function() {
+            console.log('ตำบล', this.value);
+        });
+        $('#demo1 [name="amphoe"]').change(function() {
+            console.log('อำเภอ', this.value);
+        });
+        $('#demo1 [name="province"]').change(function() {
+            console.log('จังหวัด', this.value);
+        });
+        $('#demo1 [name="zipcode"]').change(function() {
+            console.log('รหัสไปรษณีย์', this.value);
         });
     </script>
 </body>
