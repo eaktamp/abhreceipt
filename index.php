@@ -126,16 +126,16 @@
                         </div>
 
 
-                        <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group col-lg-6 mb-4">
                             <input id="district" type="text" name="district" placeholder="ตำบล / แขวง" class="form-control bg-white border-md">
                         </div>
-                        <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group col-lg-6 mb-4">
                             <input id="amphoe" type="text" name="amphoe" placeholder="อำเภอ / เขต" class="form-control bg-white border-md">
                         </div>
-                        <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group col-lg-6 mb-4">
                             <input id="province" type="text" name="province" placeholder="จังหวัด" class="form-control bg-white border-md">
                         </div>
-                        <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group col-lg-6 mb-4">
                             <input id="zipcode" type="text" name="zipcode" placeholder="รหัสไปรษณีย์" class="form-control bg-white border-md">
                         </div>
 
