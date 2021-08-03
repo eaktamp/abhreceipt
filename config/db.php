@@ -1,8 +1,8 @@
 <?php
-	$servername = "163.44.198.57";
-	$username = "cp187623_eaktamp";
-	$password = "Jhospital2014";
-	$db="cp187623_copdb";
+	$servername = "172.18.2.2";
+	$username = "webcvhost";
+	$password = "WebCpa10665Hos!";
+	$db="lab_rs_covid_19";
 	$conn = mysqli_connect($servername, $username, $password,$db);
 	mysqli_set_charset($conn,"utf8");
 

@@ -60,20 +60,6 @@
 </head>
 
 <body>
-
-
-    <!-- Navbar-->
-    <!-- <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-light py-3">
-            <div class="container">
-                <a href="#" class="navbar-brand">
-                    <img src="images/6.jpg" alt="logo" width="130" height="80">
-                </a>
-            </div>
-        </nav>
-    </header> -->
-
-
     <div class="container">
         <div class="row py-5 mt-4 align-items-center">
             <!-- For Demo Purpose -->
@@ -91,9 +77,8 @@
 
             <!-- Registeration Form -->
             <div class="col-md-7 col-lg-6 ml-auto">
-                <form action="#" id="demo1" class="demo" style="display:none;" autocomplete="off" uk-grid>
+                <form action="#" method="POST" id="demo1" enctype="multipart/form-data" class="demo" style="display:none;" autocomplete="off" uk-grid>
                     <div class="row">
-
                         <!--ชื่อ - สกุล , ชื่อบริษัท -->
                         <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
@@ -101,7 +86,7 @@
                                     <i class="fa fa-user text-muted"></i>
                                 </span>
                             </div>
-                            <input id="name_send" type="text" name="name_send" title="" placeholder="ชื่อ - สกุล , ชื่อบริษัท" class="form-control bg-white border-left-0 border-md">
+                            <input id="company_name" type="text" name="company_name" title="" placeholder="ชื่อ - สกุล , ชื่อบริษัท" class="form-control bg-white border-left-0 border-md">
                         </div>
 
                         <!-- Last Name -->
@@ -111,12 +96,19 @@
                                     <i class="fa fa-users text-muted"></i>
                                 </span>
                             </div>
-                            <input id="user_count" type="text" name="user_count" title="" placeholder=" เลขประจำตัวประชาชน " onKeyPress="CheckNumuser()" class="form-control bg-white border-left-0 border-md">
+                            <input id="id_card" type="text" maxlength='13' name="id_card" title="" placeholder=" เลขประจำตัวประชาชน " onKeyPress="CheckNum()" class="form-control bg-white border-left-0 border-md">
                         </div>
                         <!-- หน่วยงาน -->
 
 
-
+                        <div class="input-group col-lg-12 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-home"></i>
+                                </span>
+                            </div>
+                            <input id="addr" type="text" name="addr" title="" placeholder="ที่อยู่ บ้านเลขที่ หมู่บ้านตึก " class="form-control bg-white border-left-0 border-md">
+                        </div>
 
 
                         <!-- DEMO 1 -->
@@ -140,22 +132,6 @@
                         </div>
 
 
-                        <!-- END DEMO 1 -->
-
-
-
-
-                        <!--  |||||||||||||||||||||||||||||||-->
-
-
-
-
-                        <!--  |||||||||||||||||||||||||||||||-->
-
-
-
-
-
                         <!-- เบอร์โทรศํพท์ Name -->
                         <div class="input-group col-lg-6 mb-4">
                             <div class="input-group-prepend">
@@ -163,7 +139,7 @@
                                     <i class="fa fa-volume-control-phone text-muted"></i>
                                 </span>
                             </div>
-                            <input id="phone" type="text" name="phone" placeholder="เบอร์โทรศํพท์" onKeyPress="CheckNum()" class="form-control bg-white border-left-0 border-md">
+                            <input id="phone" type="text" name="phone" placeholder="เบอร์โทรศํพท์" onKeyPress="CheckNumuser()" class="form-control bg-white border-left-0 border-md">
                         </div>
                         <!-- Last Name -->
                         <div class="input-group col-lg-6 mb-4">
@@ -172,32 +148,25 @@
                                     <i class="fa fa-users text-muted"></i>
                                 </span>
                             </div>
-                            <input id="user_count" type="text" name="user_count" title="" placeholder=" จำนวนเงินที่โอน " onKeyPress="CheckNumuser()" class="form-control bg-white border-left-0 border-md">
+                            <input id="amount" type="text" name="amount" title="" placeholder=" จำนวนเงินที่โอน " onKeyPress="CheckNumuser()" class="form-control bg-white border-left-0 border-md">
                         </div>
-                        <!-- WIFI Name -->
-                        <!-- <div class="input-group col-lg-6 mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa fa-wifi text-muted"></i>
-                                </span>
-                            </div>
-                            <input id="wifi_name" type="text" name="wifi_name" placeholder="" onclick="checkwifi()" value="" readonly class="form-control bg-white border-left-0 border-md">
-                        </div> -->
 
-                        <!--กลุ่มผู้ใช้งาน -->
+
                         <div class="input-group col-lg-12    mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
                                     <i class="fa fa-list text-muted"></i>
                                 </span>
                             </div>
-                            <select id="pay" name="pay" class="form-control custom-select bg-white border-left-0 border-md">
+                            <select id="pay_id" name="pay_id" class="form-control custom-select bg-white border-left-0 border-md">
                                 <option value="0" selected>วัตถุประสงค์</option>
                                 <option value="1">ก่อสร้างห้องความดันลบฯ (ICU Covid Negative Pressure)</option>
                                 <option value="2">วัสดุและครุภัณฑ์ทางการแพทย์ (สามารถระบุเพิ่มเติมได้)</option>
                                 <!-- <option value="3">อื่น ๆ</option> -->
                             </select>
                         </div>
+
+
                         <!-- หน่วยงาน -->
                         <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
@@ -217,33 +186,17 @@
                                     <i class="fa fa-list-ul text-muted"></i>
                                 </span>
                             </div>
-                            <select id="ment" name="ment" class="form-control custom-select bg-white border-left-0 border-md">
+                            <select id="ment_id" name="ment_id" class="form-control custom-select bg-white border-left-0 border-md">
                                 <option value="0" selected>ธนาคารที่โอน </option>
                                 <option value="1">กรุงไทย </option>
                                 <option value="2">ไทยพาณิชย์</option>
 
                             </select>
                         </div>
+
                         <img src="images/logo-krungthai.png" alt="" width="60px" hight="20px">
                         &nbsp;&nbsp;&nbsp;
                         <img src="images/logo-scb.png" alt="" width="60px" hight="20px">
-
-                        <!-- Phone Number -->
-                        <!-- <div class="input-group col-lg-12 mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa fa-phone-square text-muted"></i>
-                                    <span></span>
-                                </span>
-                            </div>
-                            <select id="countryCode" name="countryCode" style="max-width: 80px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
-                                <option value="">+12</option>
-                                <option value="">+10</option>
-                                <option value="">+15</option>
-                                <option value="">+18</option>
-                            </select>
-                            <input id="phoneNumber" type="tel" name="phone" placeholder="Phone Number" class="form-control bg-white border-md border-left-0 pl-3">
-                        </div> -->
 
 
                         <!--date s -->
@@ -266,35 +219,13 @@
                             <input id="enddate" type="time" name="enddate" placeholder="เวลาที่โอน" class="form-control bg-white border-left-0 border-md">
                         </div>
 
-                        <!-- Password -->
-                        <!-- <div class="input-group col-lg-6 mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa fa-lock text-muted"></i>
-                                </span>
-                            </div>
-                            <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
-                        </div> -->
-
-                        <!-- Password Confirmation -->
-                        <!-- <div class="input-group col-lg-6 mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa fa-lock text-muted"></i>
-                                </span>
-                            </div>
-                            <input id="passwordConfirmation" type="text" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
-                        </div> -->
-
-
-
 
                         <div class="input-group col-lg-6 mb-4">
                             <div class="input-group-prepend">
                                 <div class="row mb-3">
                                     <div class="col-lg-12 mt-5">
                                         <label for="pname" class="form-label mt-2">ภาพ</label>
-                                        <input id="file_upload" name="file_upload[]" type="file" multiple="true">
+                                        <input id="file_upload" name="file_upload" type="file" multiple="true">
                                     </div>
                                     <div style="float:right;" class=" ml-5" id="thumbnail"></div>
                                 </div>
@@ -302,12 +233,9 @@
                         </div>
 
 
-
                         <!-- Submit Button -->
                         <div class="form-group col-lg-12 mx-auto mb-0 ">
-                            <a href="#" class="btn btn-primary btn-block py-2" type="submit" id="submit" name="submit">
-                                <span class="font-weight-bold">ส่งข้อมูล</span>
-                            </a>
+                            <button type="submit" name="submit" class="btn btn-primary btn-block py-2" value="submit">ส่งข้อมูล</button>
                         </div>
 
                         <!-- Divider Text -->
@@ -317,19 +245,6 @@
                             <div class="border-bottom w-100 mr-5"></div>
                         </div>
 
-                        <!-- Social Login -->
-                        <!-- <div class="form-group col-lg-12 mx-auto">
-                            <a href="#" class="btn btn-primary btn-block py-2 btn-facebook">
-                                <i class="fa fa-facebook-f mr-2"></i>
-                                <span class="font-weight-bold">Continue with Facebook</span>
-                            </a>
-                            <a href="#" class="btn btn-primary btn-block py-2 btn-twitter">
-                                <i class="fa fa-twitter mr-2"></i>
-                                <span class="font-weight-bold">Continue with Twitter</span>
-                            </a>
-                        </div> -->
-
-                        <!-- Help Center -->
                         <div class="text-center w-100">
                             <p class="text-muted font-weight-bold">Help Information Center ? <a href="https://www.cpa.go.th" target="_blank" class="text-primary ml-2">Information</a></p>
                         </div>
@@ -339,100 +254,120 @@
             </div>
         </div>
     </div>
+    <?php
+    //  company_name id_card addr district amphoe province zipcode phone amount pay_id cc ment_id startdate enddate file_upload
+
+    $target_dir = "uploads/";
+    $newimgname = 'img-' . rand() . '-' . date("Ymdhis");
+    $target_file = $target_dir . basename($_FILES["file_upload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION)); // check นามสกุลไฟล์
+    $target_file = $target_dir . $newimgname . '.' . $imageFileType; // ปรับ path file และที่อยู่
+
+    // Check if image file is a actual image or fake image
+    if (isset($_POST["submit"])) {
+        $check = getimagesize($_FILES["file_upload"]["tmp_name"]);
+        if ($check !== false) { //เช็คใช่ไฟล์ภาพหรือไม่
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+    }
+    // Check file size
+    if ($_FILES["file_upload"]["size"] > 6097152) {
+        echo "Sorry, your file is too large.";
+        $uploadOk = 0;
+    }
+    // Allow certain file formats
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+    }
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+    } else { // ไม่เจอerror รูปภาพ ทำการอัพโหลดภาพและบันทึกข้อมูลลงฐานข้อมูล
+        if (move_uploaded_file($_FILES["file_upload"]["tmp_name"], $target_file)) {
+            echo "The file " . htmlspecialchars(basename($_FILES["file_upload"]["name"])) . " has been uploaded.";
+            echo $pt_name = $_POST['company_name'];
+            echo $cid = $_POST['id_card'];
+            echo $address_number_moo = $_POST['addr'];
+            echo $tmp_name = $_POST['district'];
+            echo $amp_name = $_POST['amphoe'];
+            echo $chw_name = $_POST['province'];
+            echo $zipcode = $_POST['zipcode'];
+            echo $phone = $_POST['phone'];
+            echo $transfer_monny = $_POST['amount'];
+            echo $object_name = $_POST['pay_id'];
+            echo $object_orther = $_POST['cc'];
+            echo $transfer_bank = $_POST['ment_id'];
+            echo $transfer_date = $_POST['startdate'];
+            echo $transfer_time = $_POST['enddate'];
+            echo $img_name =  $newimgname . '.' . $imageFileType;
+            echo $type_check = 'N';
+            echo $ipupdate  = get_client_ip();
+            echo $insertdate = date('Y-m-d');
+
+            require_once('./config/db.php');
+            echo "<br>";
+            echo $sql = "INSERT INTO abhrcdb
+            (  pt_name,cid,phone,object_name,object_orther,transfer_bank,transfer_date,transfer_time,
+             transfer_monny ,img_name ,address_number_moo ,tmp_name,amp_name,chw_name ,zipcode ,
+             type_check,flage,ipupdate  ,type_check_updatedate )
+             VALUES ('$pt_name','$cid','$phone','$object_name','$object_orther','$transfer_bank','$transfer_date','$transfer_time','$transfer_monny',
+             '$img_name','$address_number_moo','$tmp_name','$amp_name','$chw_name','$zipcode','$type_check','Default','$ipupdate','$insertdate ') ";
+            echo "<br>";
+            $query = mysqli_query($conn, $sql);
+            if ($query) {
+                echo "<script>  swal('insert successfuly!!!', 'สำเร็จ').then(window.location.assign('./')</script>  ";
+            } else {
+                echo "something went wrong Can't insert data to data base !!!";
+            }
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
+
+
+    function get_client_ip()
+    {
+        $ipaddress = '';
+        if (isset($_SERVER['HTTP_CLIENT_IP']))
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        else if (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else if (isset($_SERVER['HTTP_X_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        else if (isset($_SERVER['HTTP_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        else if (isset($_SERVER['HTTP_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        else if (isset($_SERVER['REMOTE_ADDR']))
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        else
+            $ipaddress = 'UNKNOWN';
+        return $ipaddress;
+    }
+    ?>
 
     <script language="javascript">
         // เช็ค form
         function CheckNum() {
             if (event.keyCode < 48 || event.keyCode > 57) {
                 event.returnValue = false;
-                swal("เฉพาะตัวเลขเท่านั้น!", "ระบุเบอร์โทรศัพท์ของท่าน มือถือ หรือ เบอร์ภายใน !");
+                swal("เฉพาะตัวเลขเท่านั้น!", "โปรดระบุ หมายเลขประชาชน เป็นตัวเลขเท่านั้น !");
             }
         }
 
         function CheckNumuser() {
             if (event.keyCode < 48 || event.keyCode > 57) {
                 event.returnValue = false;
-                swal("เฉพาะตัวเลขเท่านั้น!", "ระบุจำนวนผู้เข้าร่วมใช้บริการ WI-FI เป็นตัวเลขเท่านั้น ");
+                swal("เฉพาะตัวเลขเท่านั้น!", "โปรดกรอกข้อมูลเป็นตัวเลขเท่านั้น");
             }
         }
-
-        function checkwifi() {
-            swal(" ABH GUEST ", "สัญญาณ WI-FI นี้เท่านั้น ");
-        }
-
-        // บันทึก
-        $(document).ready(function() {
-            $("#submit").click(function() {
-
-                var name_send = $("#name_send").val();
-                var dep = $("#dep").val();
-                var phone = $("#phone").val();
-                var cc = $("#cc").val();
-                var pay = $("#pay").val();
-                var ment = $("#ment").val();
-                var startdate = $("#startdate").val();
-                var wifi_name = $("#wifi_name").val();
-                var user_count = $("#user_count").val();
-                var enddate = $("#enddate").val();
-
-                var dataString = 'name_send=' + name_send + '&dep=' + dep + '&phone=' + phone + '&cc=' + cc + '&pay=' + pay + '&ment=' + ment + '&startdate=' + startdate + '&wifi_name=' + wifi_name + '&user_count=' + user_count + '&enddate=' + enddate;
-
-                if (name_send == '') {
-                    swal("คุณไม่ได้กรอกข้อมูล!", "ชื่อ นามสกุล , ชื่อบริษัท");
-                    return false;
-                }
-                if (user_count == '') {
-                    swal("กรุณาระบุ!", "จำนวนผู้ใช้งาน เป็นตัวเลข");
-                    return false;
-                }
-                if (dep == '') {
-                    swal("คุณไม่ได้กรอกข้อมูล!", "หน่วยงาน ผู้ขอใช้");
-                    return false;
-                }
-                if (phone == '') {
-                    swal("คุณไม่ได้กรอกข้อมูล!", "เบอร์โทรศํพท์ ผู้ขอใช้");
-                    return false;
-                }
-                if (pay == '0') {
-                    swal("คุณไม่ได้เลือกข้อมูล!", "กลุ่มผู้ใช้งาน");
-                    return false;
-                }
-                if (ment == '0') {
-                    swal("คุณไม่ได้เลือกข้อมูล!", "ลักษณะการใช้งาน");
-                    return false;
-                }
-                if (cc == '') {
-                    swal("คุณไม่ได้กรอกข้อมูล!", "วัตถุประสงค์ที่ขอใช้ WIFI");
-                    return false;
-                }
-                if (startdate == '') {
-                    swal("กรุณาตรวจสอบ!", "วันที่ขอใช้บริการไม่ถูกต้อง");
-                    return false;
-                }
-                if (enddate == '') {
-                    swal("กรุณาตรวจสอบ!", "วันที่ขอใช้บริการไม่ถูกต้อง");
-                    return false;
-                } else {
-                    $.ajax({
-                        type: "POST",
-                        url: "save.php",
-                        data: dataString,
-                        cache: false,
-                        success: function(result) {
-                            console.log(result);
-                            if (result.statusCode = 200) {
-                                swal("Success", "บันทึกข้อมูลสำเร็จ");
-                                window.location = "http://172.16.0.251/";
-
-                            } else {
-                                swal("Error", "ไม่สามารถรายการได้");
-                            }
-                        }
-                    });
-                }
-                return false;
-            });
-        });
     </script>
 
 
