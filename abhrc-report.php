@@ -115,7 +115,7 @@ date_default_timezone_set('Asia/Bangkok');
         <div id="<?php echo $result['id']; ?>" class="w3-modal" onclick="this.style.display='none'">
           <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
           <div class="w3-modal-content w3-animate-zoom slip">
-            <img src="images/<?php echo $result['img_name']; ?>" class="slip">
+            <img src="uploads/<?php echo $result['img_name']; ?>" class="slip">
           </div>
         </div>
   </div>
