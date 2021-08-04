@@ -82,12 +82,16 @@ $pmac = strpos($mycom, $findme);
                 </p>
             </div>
 
+
+
             <!-- Registeration Form -->
             <div class="col-md-7 col-lg-6 ml-auto">
-                <form action="#" method="POST" id="demo1" enctype="multipart/form-data" class="demo" style="display:none;" autocomplete="off" uk-grid>
+                <form action="#" method="POST" id="demo1" name="demo1" enctype="multipart/form-data" class="demo" style="display:none;" autocomplete="off" uk-grid>
                     <div class="row">
                         <!-- -->
-                        <div class="input-group col-lg-12 mb-4">
+
+
+                       <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
                                     <i class="fa fa-users text-muted"></i>
@@ -157,7 +161,7 @@ $pmac = strpos($mycom, $findme);
                                 </span>
                             </div>
                             <select id="object_name" name="object_name" class="form-control custom-select bg-white border-left-0 border-md" required>
-                                <option value="0" disabled selected>วัตถุประสงค์</option>
+                                <option value="" disabled selected>วัตถุประสงค์</option>
                                 <option value="1">ก่อสร้างห้องความดันลบฯ (ICU Covid Negative Pressure)</option>
                                 <option value="2">วัสดุและครุภัณฑ์ทางการแพทย์ (สามารถระบุเพิ่มเติมได้)</option>
                             </select>
@@ -169,7 +173,7 @@ $pmac = strpos($mycom, $findme);
                                     <i class="fa fa-sticky-note text-muted"></i>
                                 </span>
                             </div>
-                            <input id="cc" type="text" name="cc" placeholder="วัตถุประสงค์ อื่น ๆ ระบุ " class="form-control bg-white border-left-0 border-md" required>
+                            <input id="cc" type="text" name="cc" placeholder="วัตถุประสงค์ อื่น ๆ ระบุ " class="form-control bg-white border-left-0 border-md">
                         </div>
 
 
@@ -207,23 +211,24 @@ $pmac = strpos($mycom, $findme);
                             </div>
                         </div>
 
-                        <div class="input-group te col-lg-6 mb-4">
-                            <input type="radio" name="transfer_bank" id="ktb" class="input-hidden" value="ktb" />
+                        <div class="input-group te col-lg-5 col-5 col-md-12 mb-4 mt-3">
+                            <input type="radio" name="transfer_bank" id="ktb" class="old" value="ktb" required />
                             <label for="ktb"> <img src="images/logo-krungthai.png" alt="I'm ktb" title="โอนเงินผ่าน ธนาคารกรุงไทย" /></label>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="radio" name="transfer_bank" id="scb" class="input-hidden" value="scb" />
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="transfer_bank" id="scb" class="old"  value="scb" required />
                             <label for="scb"> <img src="images/logo-scb.png" alt="I'm scb" title="โอนเงินผ่าน ธนาคารไทยพาณิชย์" /></label>
                         </div>
-                        <div class="input-group te col-lg-6 mb-4">
-                            <div class="file_uploader">
-                                <i class="fa fa-clipboard" aria-hidden="true"></i>
-                                <input id="file_upload" name="file_upload" type="file" multiple="true" required>
-                                <label for="file_upload" title="แนบไฟล์สลิปหลักฐานการโอนเงิน">แนบสลิปโอนเงิน</label>
+
+                        <div class="input-group te col-lg-7 col-7 col-md-12 mb-4">
+                            <div class="file_uploader" title="แนบไฟล์สลิปหลักฐานการโอนเงิน">
+                                <i class="fa fa-clipboard" aria-hidden="true"></i><span> แนบสลิปโอนเงิน</span>
+                                <input id="file_upload" name="file_upload" type="file" multiple="true" class="btn btn-info btn-block py-3" required>
                             </div>
                         </div>
+                        
+
                         <div class="input-group col-lg-6 mb-4">
                             <div class="input-group-prepend">
-                                <!-- <div class="ml-5 showslip" id="thumbnail"></div> -->
                             </div>
                         </div>
                         <div class="input-group col-lg-6 mb-4">
@@ -264,6 +269,8 @@ $pmac = strpos($mycom, $findme);
 
     // Check if image file is a actual image or fake image
     if (isset($_POST["submit"])) {
+
+
         $check = getimagesize($_FILES["file_upload"]["tmp_name"]);
         if ($check !== false) { //เช็คใช่ไฟล์ภาพหรือไม่
             // echo "File is an image - " . $check["mime"] . ".";
@@ -316,10 +323,10 @@ $pmac = strpos($mycom, $findme);
                     echo   $device_send = $device_send;
                     $macupdate = $mac = substr($mycom, ($pmac + 36), 17);
 
-                    $country=file_get_contents('http://api.hostip.info/get_html.php?ip=');
-                    $only_country=explode (" ", $country);
-                    
-                    echo $localtion_check = $only_country[1]." ".substr($only_country[2],0,4);
+                    $country = file_get_contents('http://api.hostip.info/get_html.php?ip=');
+                    $only_country = explode(" ", $country);
+
+                    echo $localtion_check = $only_country[1] . " " . substr($only_country[2], 0, 4);
 
 
 
