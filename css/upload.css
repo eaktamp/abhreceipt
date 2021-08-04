@@ -50,10 +50,10 @@
   left: -9999px;
 }
 
-input[type=radio]:checked + label>img {
+/* input[type=radio]:checked + label>img {
   border: 1px solid #fff;
   box-shadow: 0 0 3px 3px #090;
-}
+} */
 
 /* Stuff after this is only to make things more pretty */
 input[type=radio] + label>img {
@@ -64,11 +64,11 @@ input[type=radio] + label>img {
   cursor: pointer;
 }
 
-input[type=radio]:checked + label>img {
+/* input[type=radio]:checked + label>img {
   transform: 
     rotateZ(-15deg) 
     rotateX(10deg);
-}
+} */
 
 
 
