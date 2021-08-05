@@ -1,9 +1,10 @@
 <?php
 include 'config/db.php';
 date_default_timezone_set('Asia/Bangkok');
+
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 
 <head>
   <meta charset="UTF-8">
@@ -42,7 +43,12 @@ date_default_timezone_set('Asia/Bangkok');
 
 <body>
   <?
-  $sql = " SELECT * FROM abhrcdb ORDER BY id DESC ";
+  $sql = " Select * ,CONCAT(LEFT(a.cid,4),'xXxXx',RIGHT(a.cid,4))  as cidx 
+  FROM abhrcdb as a
+  LEFT JOIN transfer_bank as b on a.transfer_bank = b.bank_name
+  LEFT JOIN object_name as c on c.id = a.object_name
+  WHERE 1 = 1
+  ORDER BY a.id DESC ";
   $row = mysqli_query($conn, $sql);
   ?>
   <div class="w3-container fbody">
@@ -59,13 +65,13 @@ date_default_timezone_set('Asia/Bangkok');
 
 
 
-    <button class="w3-bar-item w3-button w3-blue">ExPort Excel</button>
+    <button class="w3-bar-item w3-button w3-blue" onclick="document.getElementById('id01').style.display='block'">ExPort Excel</button>
 
     <table class="w3-table-all fbody table-hover" id="example" cellspacing="0" width="100%">
       <thead>
         <tr class="w3-red">
           <th>#</th>
-          <!-- <th>Id</th> -->
+          <th>คำนำหน้า</th>
           <th>ชื่อ-สกุล , ชื่อบริษัท</th>
           <th>เลขประชาชน</th>
           <th>เบอร์ติดต่อ</th>
@@ -87,8 +93,9 @@ date_default_timezone_set('Asia/Bangkok');
       ?>
         <tr>
           <td><?php echo $rw; ?></td>
+          <td><?php echo $result['gender']; ?></td>
           <td><?php echo $result['pt_name']; ?></td>
-          <td><?php echo $result['cid']; ?></td>
+          <td><?php echo $result['cidx']; ?></td>
           <td><?php echo $result['phone']; ?></td>
           <td><?php echo $result['object_name']; ?></td>
           <td><?php echo $result['object_orther']; ?></td>
@@ -171,6 +178,42 @@ date_default_timezone_set('Asia/Bangkok');
   });
 </script>
 </div>
+
+
+
+
+
+<div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+
+      <div class="w3-center"><br>
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+        <!-- <img src="img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top"> -->
+      <h3 class="fbody">ส่งออกข้อมูลรายการทะเบียนผู้ขอรับในเสร็จ</h3>
+      </div>
+
+      <form class="w3-container" action="export.php" method="POST" >
+        <div class="w3-section fbody">
+          <label><b>วันที่เริ่ม</b></label>
+          <input class="w3-input w3-border w3-margin-bottom" type="date" placeholder="" name="sdate" required>
+          <label><b>วันที่วิ้นสุด</b></label>
+          <input class="w3-input w3-border" type="date" placeholder="" name="edate" required>
+          <label><b>UserKeyCode</b></label>
+          <input class="w3-input w3-border" type="password" placeholder="Password Key" name="token" required>
+          <button class="w3-button w3-block w3-blue w3-section w3-padding" type="submit">Download Excel File</button>
+          <!-- <input class="w3-check w3-margin-top" type="checkbox" checked="checked"> Remember me -->
+        </div>
+      </form>
+
+      <!-- <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+        <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red">ยกเลิก</button>
+        <span class="w3-right w3-padding w3-hide-small">Forgot <a href="#">password?</a></span>
+      </div> -->
+
+    </div>
+  </div>
+</div>
+
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <?php
+$css_version = date('Ymd');
 ob_start();
 system('ipconfig /all');
 $mycom = ob_get_contents();
@@ -15,7 +16,7 @@ $pmac = strpos($mycom, $findme);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/ncss.css">
     <link rel="stylesheet" href="css/ra.css">
-    <link rel="stylesheet" href="css/upload.css">
+    <link rel="stylesheet" href="css/upload.css?v=<?=$css_version;?>">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
@@ -90,7 +91,10 @@ $pmac = strpos($mycom, $findme);
                     <div class="row">
                         <!-- -->
 
-                        <div class="input-group col-lg-4  mb-4">
+                        <div class="input-group col-lg-5  mb-4">
+                        <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-user-o text-muted"></i>
+                                </span>
                             <select id="gender" name="gender" class="form-control custom-select bg-white border-left-0 border-md" required>
                                 <option value="" disabled selected>คำนำหน้า</option>
                                 <option value="นาย">นาย</option>
@@ -99,7 +103,7 @@ $pmac = strpos($mycom, $findme);
                                 <option value="ไม่ระบุ">ไม่ระบุ</option>
                             </select>
                         </div>
-                       <div class="input-group col-lg-8 mb-4">
+                       <div class="input-group col-lg-7 mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
                                     <i class="fa fa-users text-muted"></i>
